@@ -20,5 +20,14 @@ for item in items:
 # Creating labeled indices with the band names
 df = df.set_index('name')
 
+
+# Accessing the total key in followers dict object and displaying that information in followers column
+followers = df['followers'].values
+follower_count = []
+for follower in followers:
+    follower_count.append(follower['total'])
+
+df['followers'] = follower_count
+
 html = df.to_html()
 

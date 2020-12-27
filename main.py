@@ -1,10 +1,8 @@
-from flask import Flask, render_template, url_for, request, redirect, current_app
-import top_artists
+from flask import Flask, current_app, render_template, url_for, request, redirect
 import spotty
 import numpy as np
 import pandas as pd
 import data_science_cory
-import os
 
 app = Flask(__name__)
 # df = pd.DataFrame(top_artists.results)
