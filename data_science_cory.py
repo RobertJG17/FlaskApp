@@ -8,8 +8,8 @@ import ast
 #################################
 
 
-# BASE
-def base_formatter(new, coll):
+# ITEMS
+def items_formatter(new, coll):
     for item in coll:
         # Converting each str item into a dictionary
         item_dict = ast.literal_eval(item)
@@ -49,15 +49,18 @@ def genre_formatter(ser):
 
 ########################################################################
 
+
 ####################
 #### DATAFRAMES ####
 ####################
 
 
-## GENERAL ##
+### GENERAL ###
 
 
 # ---HELPER FUNCTIONS---
+
+# Returns DataFrame with the top five artists along with the name and image of the band
 def top_five_artists(artists):
     image_list = artists['images'].values
     images = []
@@ -69,13 +72,13 @@ def top_five_artists(artists):
     return artists[['name', 'images']]
 
 
-# Reading in HTML file and formatting to a DataFrame
+# ~~~~Start~~~~ #
 
 # raw_df = pd.DataFrame(top_artists.results) (Development Ready statement)
 raw_df = pd.read_html('static/top_artists.html')[0]
 new_df = pd.DataFrame()
 items = raw_df['items']
-new_df = base_formatter(new_df, items)
+new_df = items_formatter(new_df, items)
 
 # Creating top 5 artist DataFrame
 artists_df = top_five_artists(new_df[:5])
@@ -85,23 +88,29 @@ artists_json = artists_df.to_json()
 new_df.set_index('name', inplace=True)
 
 # Writing base DataFrame to HTML file
-general_html = new_df.to_html()
+items_html = new_df.to_html()
+
+# ~~~~End~~~~ #
+
 
 ########################################################################
 
 
-## POPULAR ##
+### POPULAR ###
 
+# ~~~~Start~~~~ #
 
 popular = new_df
 popular = popular_formatter(popular)
 popular_html = popular.to_html()
 
+# ~~~~End~~~~ #
+
 
 ########################################################################
 
 
-## GENRES ##
+### GENRES ###
 
 
 # ---HELPER FUNCTIONS---
@@ -117,6 +126,8 @@ def genre_series_to_set(cols, st):
     return st
 
 
+# ~~~~Start~~~~ #
+
 genre_col = new_df['genres'].values
 initial_set = {}
 genre_set = genre_series_to_set(genre_col, initial_set)
@@ -127,3 +138,5 @@ genre_series = pd.Series(genre_set)
 # Store the returned DataFrame
 genre_df = genre_formatter(genre_series)
 genre_json = genre_df.to_json()
+
+# ~~~~End~~~~ #
