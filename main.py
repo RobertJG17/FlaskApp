@@ -5,20 +5,36 @@ import pandas as pd
 import data_science_cory
 
 app = Flask(__name__)
-# df = pd.DataFrame(top_artists.results)
-# cory = df.to_html('top_artists.html')
-data = data_science_cory.html
+
+general = data_science_cory.general_html
+pop_data = data_science_cory.popular_html
+top_five_genres = data_science_cory.genre_json
+top_five_artists = data_science_cory.artists_json
 
 
-@app.route('/', methods=['GET'])
-def index():
-    return data
-
-
-@app.route('/t', methods=['GET'])
+# @app.route('/', methods=['GET'])
+# def index():
+#     return current_app.send_static_file('top_artists.html')
+#
+#
+@app.route('/1', methods=['GET'])
 def test():
-    # Allows us to return static html from folder without having to declare a variable
-    return current_app.send_static_file('top_artists.html')
+    return general
+#
+#
+# @app.route('/2', methods=['GET'])
+# def test1():
+#     return pop_data
+
+
+@app.route('/top-five', methods=['GET'])
+def index():
+    return top_five_genres
+
+
+@app.route('/top-five/artist', methods=['GET'])
+def top_artists():
+    return top_five_artists
 
 
 if __name__ == '__main__':
