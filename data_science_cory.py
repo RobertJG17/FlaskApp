@@ -28,6 +28,7 @@ for follower in followers:
     follower_count.append(follower['total'])
 
 df['followers'] = follower_count
+df = df.drop(['type', 'external_urls', 'uri'], axis=1)
 
 html = df.to_html()
 
