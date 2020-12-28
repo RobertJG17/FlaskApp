@@ -43,7 +43,6 @@ def genre_formatter(ser):
     # Creating and Formatting DataFrame to neatly represent Info
     gen = pd.DataFrame({'Genres of Choice': genre_percent.index[:5], 'Percentage': genre_percent.values[:5]})
     gen['Genres of Choice'] = gen['Genres of Choice'].apply(str.title)
-    gen.index += 1
     return gen
 
 
@@ -137,6 +136,7 @@ genre_series = pd.Series(genre_set)
 
 # Store the returned DataFrame
 genre_df = genre_formatter(genre_series)
-genre_json = genre_df.to_html()
+genre_df = genre_df.transpose()
+genre_json = genre_df.to_json()
 
 # ~~~~End~~~~ #
