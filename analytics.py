@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import ast
+import top_artists
 
 
 #################################
@@ -12,10 +13,10 @@ import ast
 def items_formatter(new, coll):
     for item in coll:
         # Converting each str item into a dictionary
-        item_dict = ast.literal_eval(item)
+        # item_dict = ast.literal_eval(item)
 
         # Appending dictionary as a row of information to new DataFrame
-        new = new.append(item_dict, ignore_index=True)
+        new = new.append(item, ignore_index=True)
 
     return new
 
@@ -72,8 +73,8 @@ def top_five_artists(artists):
 
 # ~~~~Start~~~~ #
 
-# raw_df = pd.DataFrame(top_artists.results) (Development Ready statement)
-raw_df = pd.read_html('static/top_artists.html')[0]
+raw_df = pd.DataFrame(top_artists.results)
+# raw_df = pd.read_html('static/top_artists.html')[0]
 items_df = pd.DataFrame()
 items = raw_df['items']
 items_df = items_formatter(items_df, items)
