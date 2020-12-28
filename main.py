@@ -1,5 +1,5 @@
 from flask import Flask, current_app
-from data.analytics import items_html, popular_html, genre_json, artists_json
+from analytics import items_html, popular_html, genre_json, artists_json
 
 app = Flask(__name__)
 

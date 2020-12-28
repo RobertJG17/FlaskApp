@@ -69,19 +69,20 @@ def top_five_artists(artists):
 
     artists['images'] = images
     artists.index = np.arange(1, len(artists) + 1)
-    return artists[['name', 'images']]
+    return artists[['name', 'images', 'uri']]
 
 
 # ~~~~Start~~~~ #
 
 # raw_df = pd.DataFrame(top_artists.results) (Development Ready statement)
-raw_df = pd.read_html('../static/top_artists.html')[0]
+raw_df = pd.read_html('static/top_artists.html')[0]
 items_df = pd.DataFrame()
 items = raw_df['items']
 items_df = items_formatter(items_df, items)
 
 # Creating top 5 artist DataFrame
 artists_df = top_five_artists(items_df[:5])
+artists_df = artists_df.transpose()
 artists_json = artists_df.to_json()
 
 # Creating labeled indices with the band names
@@ -137,6 +138,6 @@ genre_series = pd.Series(genre_set)
 
 # Store the returned DataFrame
 genre_df = genre_formatter(genre_series)
-genre_json = genre_df.to_json()
+genre_json = genre_df.to_html()
 
 # ~~~~End~~~~ #
