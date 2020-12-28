@@ -1,5 +1,3 @@
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
 import config
 
 scope = 'user-top-read'

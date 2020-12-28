@@ -1,8 +1,5 @@
-from flask import Flask, current_app, render_template, url_for, request, redirect
-from data_science_cory import items_html, popular_html, genre_json, artists_json
-import spotty
-import numpy as np
-import pandas as pd
+from flask import Flask, current_app
+from data.analytics import items_html, popular_html, genre_json, artists_json
 
 app = Flask(__name__)
 

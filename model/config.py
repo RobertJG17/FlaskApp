@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 
 # Pulling data from env file
-dotenv_path = join(dirname(__file__), '.env')
+dotenv_path = join(dirname(__file__), '../misc/.env')
 load_dotenv(dotenv_path)
 
 # Unique access tokens from env files

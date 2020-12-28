@@ -11,5 +11,5 @@
 #     results = spotify.next(results)
 #     albums.extend(results['items'])
 
-#for album in albums:
+# for album in albums:
 #    print(album['name'])

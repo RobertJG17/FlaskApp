@@ -75,20 +75,20 @@ def top_five_artists(artists):
 # ~~~~Start~~~~ #
 
 # raw_df = pd.DataFrame(top_artists.results) (Development Ready statement)
-raw_df = pd.read_html('static/top_artists.html')[0]
-new_df = pd.DataFrame()
+raw_df = pd.read_html('../static/top_artists.html')[0]
+items_df = pd.DataFrame()
 items = raw_df['items']
-new_df = items_formatter(new_df, items)
+items_df = items_formatter(items_df, items)
 
 # Creating top 5 artist DataFrame
-artists_df = top_five_artists(new_df[:5])
+artists_df = top_five_artists(items_df[:5])
 artists_json = artists_df.to_json()
 
 # Creating labeled indices with the band names
-new_df.set_index('name', inplace=True)
+items_df.set_index('name', inplace=True)
 
 # Writing base DataFrame to HTML file
-items_html = new_df.to_html()
+items_html = items_df.to_html()
 
 # ~~~~End~~~~ #
 
@@ -100,7 +100,7 @@ items_html = new_df.to_html()
 
 # ~~~~Start~~~~ #
 
-popular = new_df
+popular = items_df
 popular = popular_formatter(popular)
 popular_html = popular.to_html()
 
@@ -128,7 +128,7 @@ def genre_series_to_set(cols, st):
 
 # ~~~~Start~~~~ #
 
-genre_col = new_df['genres'].values
+genre_col = items_df['genres'].values
 initial_set = {}
 genre_set = genre_series_to_set(genre_col, initial_set)
 
