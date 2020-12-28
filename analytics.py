@@ -68,7 +68,6 @@ def top_five_artists(artists):
         images.append(image[0]['url'])
 
     artists['images'] = images
-    artists.index = np.arange(1, len(artists) + 1)
     return artists[['name', 'images', 'uri']]
 
 
