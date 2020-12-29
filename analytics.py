@@ -74,7 +74,7 @@ def top_five_artists(artists):
 # ~~~~Start~~~~ #
 
 raw_df = pd.DataFrame(top_artists.results)
-# raw_df = pd.read_html('static/top_artists.html')[0]
+# raw_df = pd.read_html('static/top_artists.html')[0
 items_df = pd.DataFrame()
 items = raw_df['items']
 items_df = items_formatter(items_df, items)
