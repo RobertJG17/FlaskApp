@@ -42,8 +42,8 @@ def genre_formatter(ser):
     genre_percent.sort_values(ascending=False, inplace=True)
 
     # Creating and Formatting DataFrame to neatly represent Info
-    gen = pd.DataFrame({'GenresofChoice': genre_percent.index[:5], 'Percentage': genre_percent.values[:5]})
-    gen['GenresofChoice'] = gen['GenresofChoice'].apply(str.title)
+    gen = pd.DataFrame({'Genres': genre_percent.index[:5], 'Percentage': genre_percent.values[:5]})
+    gen['Genres'] = gen['Genres'].apply(str.title)
     return gen
 
 
