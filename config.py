@@ -15,7 +15,7 @@ secret = os.environ.get("USER_CLIENT")
 
 # OAUTH FLOW (LONG TERM USAGE i.e. having user sign in to gather user information)
 scope = 'user-top-read'
-auth_manager = SpotifyOAuth(client_id=cid, client_secret=secret, redirect_uri="http://127.0.0.1:5000/token", scope=scope)
+auth_manager = SpotifyOAuth(client_id=cid, client_secret=secret, redirect_uri="http://127.0.0.1:5000/", scope=scope)
 
 sp = spotipy.Spotify(auth_manager=auth_manager)
 

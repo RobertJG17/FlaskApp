@@ -3,7 +3,7 @@ from analytics import items_html, popular_html, genre_json, artists_json
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/": {"origins": ""}})
+cors = CORS(app, supports_credentials=True, resources={r"/": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
@@ -37,24 +37,25 @@ def artists():
     return artists_json
 
 
-@app.route('/token/', methods=['GET'])
+# @app.route('/token/', methods=['GET'])
+# @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+# def callback_token():
+#     print("token", type(request.args.get('code')))
+#     return 'ok'
+
+
+@app.route('/json/user-token', methods=['POST'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
-def callback_token():
-    print("token", type(request.args.get('code')))
-    return 'ok'
-
-
-@app.route('/user-token', methods=['POST'])
-@cross_origin()
 def user_token():
     data = request.json
+    print(data)
     f = open('.cache', 'w')
     f.write(f"{data}")
     f.close()
-    f = open('.cache', 'r')
-    cache = f.read()
-    f.close()
-    return f"recied: {cache}"
+    # f = open('.cache', 'r')
+    # cache = f.read()
+    # f.close()
+    return data
 
 
 if __name__ == '__main__':
