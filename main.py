@@ -36,6 +36,7 @@ def genres():
 def artists():
     return artists_json
 
+
 @app.route('/token/', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def callback_token():
