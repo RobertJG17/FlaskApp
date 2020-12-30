@@ -1,4 +1,4 @@
-from flask import Flask, current_app
+from flask import Flask, current_app, request
 from analytics import items_html, popular_html, genre_json, artists_json
 from flask_cors import CORS, cross_origin
 
@@ -35,6 +35,13 @@ def genres():
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def artists():
     return artists_json
+
+
+@app.route('/user-token', methods=['POST'])
+@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+def user_token():
+    data = request.form()
+    return data
 
 
 if __name__ == '__main__':

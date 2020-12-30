@@ -17,5 +17,7 @@ secret = os.environ.get("USER_CLIENT")
 scope = 'user-top-read'
 auth_manager = SpotifyOAuth(client_id=cid, client_secret=secret, redirect_uri="https://www.google.com/", scope=scope)
 sp = spotipy.Spotify(auth_manager=auth_manager)
+# spotipy.Spotify()
+
 
 # client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret) (SHORT TERM USAGE)
