@@ -47,7 +47,10 @@ def callback_token():
 @app.route('/user-token', methods=['POST'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def user_token():
-    data = request.form()
+    data = request.json
+    f = open('.cache', 'w')
+    f.write(f"{data}")
+    f.close()
     return data
 
 
