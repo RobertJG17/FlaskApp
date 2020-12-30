@@ -50,7 +50,10 @@ def user_token():
     f = open('.cache', 'w')
     f.write(f"{data}")
     f.close()
-    return f"recied: {data}"
+    f = open('.cache', 'r')
+    cache = f.read()
+    f.close()
+    return f"recied: {cache}"
 
 
 if __name__ == '__main__':
