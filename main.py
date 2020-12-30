@@ -43,7 +43,6 @@ def callback_token():
     return 'ok'
 
 
-
 @app.route('/user-token', methods=['POST'])
 @cross_origin()
 def user_token():
