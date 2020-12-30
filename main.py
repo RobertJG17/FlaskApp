@@ -45,13 +45,13 @@ def callback_token():
 
 
 @app.route('/user-token', methods=['POST'])
-@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+@cross_origin()
 def user_token():
     data = request.json
     f = open('.cache', 'w')
     f.write(f"{data}")
     f.close()
-    return data
+    return f"recied: {data}"
 
 
 if __name__ == '__main__':
