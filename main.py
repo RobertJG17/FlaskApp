@@ -1,6 +1,7 @@
 from flask import Flask, current_app, request
 from analytics import items_html, popular_html, genre_json, artists_json
 from flask_cors import CORS, cross_origin
+import config
 
 app = Flask(__name__)
 cors = CORS(app, supports_credentials=True, resources={r"/": {"origins": "*"}})
@@ -36,11 +37,14 @@ def genres():
 def artists():
     return artists_json
 
-# @app.route('/token/', methods=['GET'])
-# @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
-# def callback_token():
-#     print("token", type(request.args.get('code')))
-#     return 'ok'
+@app.route('/token', methods=['POST'])
+@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+def callback_token():
+    data = request.json
+    token = config.auth_manager.get_access_token(data)
+    print(data)
+    print("token", token)
+    return token
 
 
 @app.route('/json/user-token', methods=['POST'])
