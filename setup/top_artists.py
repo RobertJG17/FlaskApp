@@ -1,4 +1,4 @@
-import config
+from setup import config
 
 scope = 'user-top-read'
 ranges = ['short_term', 'medium_term', 'long_term']
