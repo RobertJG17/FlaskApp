@@ -1,5 +1,7 @@
 from flask import Flask, current_app, request
-from analytics import items_html, popular_html, genre_json, artists_json
+from dataclean.top_artists_clean import items_html
+from analytics.artist_analytics import artists_json
+from analytics.genre_analytics import genre_json
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
@@ -17,12 +19,6 @@ def index():
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def items():
     return items_html
-
-
-@app.route('/popular', methods=['GET'])
-@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
-def popular():
-    return popular_html
 
 
 @app.route('/genres', methods=['GET'])
