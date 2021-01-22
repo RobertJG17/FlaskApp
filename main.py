@@ -1,26 +1,30 @@
 from flask import Flask, current_app, request
-from dataclean.top_artists_clean import items_html
+from flask_cors import CORS, cross_origin
+
 from analytics.artist_analytics import artists_json
 from analytics.genre_analytics import genre_json
-from flask_cors import CORS, cross_origin
+from analytics.tracks_analytics import tracks_json
+
 
 app = Flask(__name__)
 cors = CORS(app, supports_credentials=True, resources={r"/": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
+# STATIC ROUTES
 @app.route('/', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def index():
     return current_app.send_static_file('top_artists.html')
 
 
-@app.route('/items', methods=['GET'])
+@app.route('/raw_track', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def items():
-    return items_html
+    return current_app.send_static_file('top_tracks.html')
 
 
+# LIVE ROUTES
 @app.route('/genres', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def genres():
@@ -31,6 +35,12 @@ def genres():
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def artists():
     return artists_json
+
+
+@app.route('/tracks', methods=['GET'])
+@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+def tracks():
+    return tracks_json
 
 
 # @app.route('/token/', methods=['GET'])

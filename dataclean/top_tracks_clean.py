@@ -1,5 +1,5 @@
 import pandas as pd
-from setup import top_artists
+from setup import top_tracks
 
 
 # ITEMS DF
@@ -15,13 +15,11 @@ def items_formatter(new, coll):
 
 
 # raw_df = pd.read_html('static/top_artists.html')[0]
-raw_df = pd.DataFrame(top_artists.results)
+raw_df = pd.DataFrame(top_tracks.results)
 
-items_df = pd.DataFrame()
 items = raw_df['items']
-items_df = items_formatter(items_df, items)
 
-# Creating labeled indices with the band names
-# items_df.set_index('name', inplace=True)
+tracks_df = pd.DataFrame()
+tracks_df = items_formatter(tracks_df, items)
 
-# raw_df.to_html()
+tracks_df.to_html()
