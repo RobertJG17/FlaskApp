@@ -14,14 +14,11 @@ def items_formatter(new, coll):
     return new
 
 
-# raw_df = pd.read_html('static/top_artists.html')[0]
 raw_df = pd.DataFrame(top_artists.results)
 
-items_df = pd.DataFrame()
 items = raw_df['items']
-items_df = items_formatter(items_df, items)
 
-# Creating labeled indices with the band names
-# items_df.set_index('name', inplace=True)
+artists_df = pd.DataFrame()
+artists_df = items_formatter(artists_df, items)
 
-# raw_df.to_html()
+# raw_df.to_html('static/top_artists.html')

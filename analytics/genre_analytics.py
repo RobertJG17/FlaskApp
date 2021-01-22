@@ -1,8 +1,6 @@
-from dataclean.top_artists_clean import items_df
+from dataclean.top_artists_clean import artists_df
 import pandas as pd
 
-
-# GENRES #
 
 # HELPER FUNCTIONS
 def genre_formatter(ser):
@@ -29,7 +27,7 @@ def genre_series_to_set(cols, st):
 
 
 # ~~~~Start~~~~ #
-genre_col = items_df['genres'].values
+genre_col = artists_df['genres'].values
 initial_set = {}
 genre_set = genre_series_to_set(genre_col, initial_set)
 

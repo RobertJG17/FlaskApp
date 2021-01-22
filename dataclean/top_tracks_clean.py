@@ -22,4 +22,4 @@ items = raw_df['items']
 tracks_df = pd.DataFrame()
 tracks_df = items_formatter(tracks_df, items)
 
-tracks_df.to_html()
+# tracks_df.to_html()

@@ -25,6 +25,8 @@ def items():
 
 
 # LIVE ROUTES
+
+# GET ROUTES
 @app.route('/genres', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def genres():
@@ -43,13 +45,7 @@ def tracks():
     return tracks_json
 
 
-# @app.route('/token/', methods=['GET'])
-# @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
-# def callback_token():
-#     print("token", type(request.args.get('code')))
-#     return 'ok'
-
-
+# POST ROUTES
 @app.route('/json/user-token', methods=['POST'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def user_token():
@@ -63,6 +59,12 @@ def user_token():
     # f.close()
     return data
 
+
+# @app.route('/token/', methods=['GET'])
+# @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+# def callback_token():
+#     print("token", type(request.args.get('code')))
+#     return 'ok'
 
 if __name__ == '__main__':
     app.run()
