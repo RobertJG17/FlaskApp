@@ -21,4 +21,4 @@ items = raw_df['items']
 artists_df = pd.DataFrame()
 artists_df = items_formatter(artists_df, items)
 
-# raw_df.to_html('static/top_artists.html')
+artists_df.to_html('static/top_artists.html')

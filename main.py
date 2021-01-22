@@ -6,6 +6,7 @@ from analytics.genre_analytics import genre_json
 from analytics.tracks_analytics import tracks_json
 
 
+# CORS init and Flask app setup
 app = Flask(__name__)
 cors = CORS(app, supports_credentials=True, resources={r"/": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
